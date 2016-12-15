@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="cache-control" content="no-cache" />
+  <title>Opener Tracker for FPI</title>
+</head>
+<body>
+<div style="display:block; visibility:hidden"> 
+  <iframe src="https://people-mozilla.org/~tihuang/openerHidden.html" id="hiddenFrame" ></iframe>
+</div>
+<a target="_blank" href="https://people-mozilla.org/~tihuang/openerTarget.html">open a tab</a>
+</br>
+<a href="https://people-mozilla.org/~tihuang/openerTarget.html" onclick="window.open(this.href, 'mywin', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" >open a window</a>
+</br>
+</body>
+</html>
