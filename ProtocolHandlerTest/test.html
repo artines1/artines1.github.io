@@ -12,9 +12,9 @@
             iframe0.style["border"]="0px";
             document.body.appendChild(iframe0);
             iframe0.contentWindow.location.href = protocol + ":";
-            document.getElementById("list").innerHTML += "<li>" + protocol_name + " protocol: Installed</li>";
+            document.getElementById("list").innerHTML += "<li>" + protocol + " protocol: Installed</li>";
         } catch (e) {
-            document.getElementById("list").innerHTML += "<li>" + protocol_name + " protocol: Not Installed</li>";
+            document.getElementById("list").innerHTML += "<li>" + protocol + " protocol: Not Installed</li>";
         }
         iframe0.src="";
         iframe0.parentNode.removeChild(iframe0);
