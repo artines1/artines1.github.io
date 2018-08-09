@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>iframe</title>
+</head>
+<body>
+    <p>iFrame</p>
+    <script>
+        function check(protocol_name) {
+            try {
+                document.location.href = protocol_name + ":";
+                window.parent.document.getElementById("list").innerHTML += "<li>" + protocol_name + " protocol: Installed</li>";
+            } catch (e) {
+                window.parent.document.getElementById("list").innerHTML += "<li>" + protocol_name + " protocol: Not Installed</li>";
+            }
+        }
+        function start() {
+            check("steam");
+            check("ssh");
+            check("battlenet");
+        }
+    </script>
+    <button onclick="start();">Check</button>
+</body>
+</html>
+
