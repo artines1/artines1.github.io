@@ -5,8 +5,9 @@
     <title>Base</title>
     <script>
     function test_protocol(protocol) {
+        let iframe0 = document.createElement("iframe");
+
         try {
-            let iframe0 = document.createElement("iframe");
             iframe0.height="1px";
             iframe0.width="1px";
             iframe0.style["border"]="0px";
