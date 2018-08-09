@@ -15,22 +15,24 @@
             iframe0.contentWindow.location.href = protocol + ":";
             document.getElementById("list").innerHTML += "<li>" + protocol + " protocol: Installed</li>";
         } catch (e) {
-            document.getElementById("list").innerHTML += "<li>" + protocol + " protocol: Not Installed</li>";
+            document.getElementById("list").innerHTML += `<li>${protocol} protocol: Not Installed with error ${e}</li>`;
         }
         iframe0.src="";
         iframe0.parentNode.removeChild(iframe0);
     }
 
     function start_test() {
-        test_protocol("steam");
-        test_protocol("ssh");
-        test_protocol("battlenet");
+        let protocol = document.getElementById("protocol_name").value;
+        if (protocol) {
+            test_protocol(protocol);
+        }
     }
     </script>
 </head>
-<body onload="start_test()">
-    <p>Detect if users install certain softwares by attampting to open external protocols.</p>
+<body>
+    <p>Detect if users install certain softwares by attempting to open external protocols.</p>
     <ul id="list"></ul>
-    <iframe src="iframe.html"></iframe>
+    Protocol: <input type="text" id="protocol_name">
+    <input type="button" onclick="start_test()">
 </body>
 </html>
