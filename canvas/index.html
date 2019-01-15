@@ -17,13 +17,17 @@
       let text = document.getElementById("text");
       text.innerHTML = dataURL;
     }
+
+    function extractCanvasWithEventLoop() {
+      setTimeout(extractCanvasDirectly, 0);
+    }
   </script>
 </head>
 <body onload="onLoad()">
 <canvas id="canvas"></canvas>
 <br>
-<input type="button" onclick="extractCanvasDirectly()" value="Extract Directly">
-<input type="button" value="Extract with Event Loop">
+<input type="button" onclick="extractCanvasDirectly()" value="Extract Directly"/>
+<input type="button" onclick="extractCanvasWithEventLoop()" value="Extract with Event Loop"/>
 <br>
 <p id="text"></>
 </body>
