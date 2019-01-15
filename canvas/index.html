@@ -10,10 +10,22 @@
       ctx.fillStyle = 'green';
       ctx.fillRect(10, 10, 100, 100);
     }
+
+    function extractCanvasDirectly() {
+      let canvas = document.getElementById('canvas');
+      let dataURL = canvas.toDataURL(); 
+      let text = document.getElementById("text");
+      text.innerHTML = dataURL;
+    }
   </script>
 </head>
 <body onload="onLoad()">
 <canvas id="canvas"></canvas>
+<br>
+<input type="button" onclick="extractCanvasDirectly()" value="Extract Directly">
+<input type="button" value="Extract with Event Loop">
+<br>
+<p id="text"></>
 </body>
 </html>
 
