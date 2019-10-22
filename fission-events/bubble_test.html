@@ -9,7 +9,6 @@
       "DOMContentLoaded",
       function(event) {
         alert("123");
-        let subframe = event.target != content.document;
         let output = document.getElementById("output");
 
         output.textContent += `Got DOMContentLoaded event for ${event.target.documentURI}\n`;
