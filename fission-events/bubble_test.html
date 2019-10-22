@@ -5,6 +5,17 @@
   <title>Test event bubbling across origins</title>
   <script>
 
+    addEventListener(
+      "DOMContentLoaded",
+      function(event) {
+        let subframe = event.target != content.document;
+        let output = document.getElementById("output");
+
+        output.textContent += `Got DOMContentLoaded event for ${event.target.documentURI}\n`;
+      },
+      true
+    );
+
     window.onload = function() {
       let iframe = document.createElement("iframe");
       iframe.id = "iframe";
@@ -14,5 +25,6 @@
   </script>
 </head>
 <body>
+  <p id="output"></p>>
 </body>
 </html>
