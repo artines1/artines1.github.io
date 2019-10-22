@@ -8,7 +8,6 @@
     addEventListener(
       "DOMContentLoaded",
       function(event) {
-        alert("123");
         let output = document.getElementById("output");
 
         output.textContent += `Got DOMContentLoaded event for ${event.target.documentURI}\n`;
@@ -26,6 +25,6 @@
 </head>
 <body>
   <p id="output"></p>
-  <iframe id="iframe" src="https://example.com"></iframe>
+  <iframe id="iframe" src="/canvas/index.html"></iframe>
 </body>
 </html>
