@@ -3,8 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <title>Test Permission Delegation</title>
+  <script>
+      function notifyMe() {
+        Notification.requestPermission().then(function (permission) {
+
+        });
+      }
+
+  </script>
 </head>
 <body>
   <iframe id="iframe" src="https://permission.site/" width="600" height="600"></iframe>
+  <button onclick="notifyMe()">Notify me!</button>
 </body>
 </html>
