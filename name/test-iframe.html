@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Test Window.Name (iframe)</title>
+  <script>
+      function showName() {
+        document.getElementById("output").textContent = window.name;
+      }
+
+      function SetName() {
+        window.name = document.getElementById("name").value;
+      }
+
+      function navigate() {
+        window.location = "https://autoradiograph-oven.000webhostapp.com/name/test-iframe.html";
+      }
+
+      function showOpenerAndParent() {
+        document.getElementById("show").textContent = "";
+        if (!window.opener) {
+            document.getElementById("show").textContent += "No opener ";
+        } else {
+            document.getElementById("show").textContent += "Has opener ";
+        }
+
+        if (!window.parent) {
+            document.getElementById("show").textContent += "No parent ";
+        } else {
+            document.getElementById("show").textContent += "Has parent ";
+        }
+      }
+
+  </script>
+</head>
+<body>
+  Window.Name = <a id="output"></a><br>
+  <button onclick="showName()">Show Window.name</button><br>
+  <input type="text" id="name"></input><input type="button" onclick="SetName()" value="Set"></input><br>
+  <button onclick="navigate()">Navigate</button><br>
+  <button onclick="showOpenerAndParent()">Show opener and parent</button> <a id="show"></a>
+</body>
+</html>
