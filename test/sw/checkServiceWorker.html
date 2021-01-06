@@ -5,24 +5,36 @@
 <body>
 <script>
   window.onload = () => {
-    let res = document.getElementById("result");
     
+    let res_sw = document.getElementById("result_sw");
+
     // try {
-    //   navigator.serviceWorker.register('testScript.js');
-    //   res.textContent = "Service Worker is available."
+    //  navigator.serviceWorker.register('testScript.js');
+    //  res.textContent = "Service Worker is available."
     // } catch (e) {
-    //   res.textContent = "Service Worker is not available.";
+    //  res.textContent = "Service Worker is not available.";
     // }
+
+    navigator.serviceWorker.register("testScript.js")
+      .then(function(reg) {
+          res_sw.textContent = "Service Worker is available.";
+        }
+      ).catch(function(err) {
+          res_sw.textContent = "Service Worker is not available.";
+        }
+    );
     
+    let res_ls = document.getElementById("result_ls");
     try {
       window.localStorage.setItem("a", "b");
-      res.textContent = "Local Stroage is available."
+      res_ls.textContent = "Local Stroage is available."
     } catch (e) {
-      res.textContent = "Local Stroage is not available.";
+      res_ls.textContent = "Local Stroage is not available.";
     }
   }
 </script>
-Result: <a id="result"></a>
+Service Worker Result: <a id="result_sw"></a><br>
+LocalStorage Result: <a id="result_ls"></a>
 </body>
 </html>
 
