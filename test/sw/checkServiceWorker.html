@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>Check if the Service Worker is available</title>
+</head>
+<body>
+<script>
+  window.onload = () => {
+    let res = document.getElementById("result");
+    
+    // try {
+    //   navigator.serviceWorker.register('testScript.js');
+    //   res.textContent = "Service Worker is available."
+    // } catch (e) {
+    //   res.textContent = "Service Worker is not available.";
+    // }
+    
+    try {
+      window.localStorage.setItem("a", "b");
+      res.textContent = "Local Stroage is available."
+    } catch (e) {
+      res.textContent = "Local Stroage is not available.";
+    }
+  }
+</script>
+Result: <a id="result"></a>
+</body>
+</html>
+
