@@ -1,0 +1,77 @@
+<html>
+<head>
+  <title>Verify if the Service Worker has the partitioned Principal</title>
+</head>
+<body>
+<script>
+  window.onload = () => {
+    let sw_stat = document.getElementById("sw_status");
+
+    navigator.serviceWorker.register("sw.js")
+      .then((registration) => {
+        console.log("Service worker registration succeeded:", registration);
+
+        return navigator.serviceWorker.ready;
+      }).then(() => {
+        navigator.serviceWorker.onmessage = (event) => {
+          handleSWReply(event);
+        }
+
+        sw_stat.textContent = "Available";
+      }).catch(err => {
+        console.log("Service worker registration failed:", err);
+        sw_stat.textContent = "Not available";
+      });
+
+    let setBtn = document.getElementById("set_btn");
+    let checkBtn = document.getElementById("check_btn");
+    let clearBtn = document.getElementById("clear_btn");
+
+    setBtn.addEventListener('click', setSWDOMCache);
+    checkBtn.addEventListener('click', checkSWDOMCache);
+    clearBtn.addEventListener('click', clearSWDOMCache);
+  }
+
+  function handleSWReply(event) {
+    let status = document.getElementById("cache_status");
+
+    if (event.data.type == "Reply") {
+      status.textContent = event.data.msg;
+    }
+  }
+
+  async function setSWDOMCache() {
+    console.log("Setting Service Worker DOM Cache ...");
+
+    navigator.serviceWorker.controller.postMessage({
+      type: 'Set',
+    });
+  }
+
+  async function checkSWDOMCache() {
+    console.log("Checking Service Worker DOM Cache ...");
+
+    navigator.serviceWorker.controller.postMessage({
+      type: 'Check',
+    });
+  }
+
+  async function clearSWDOMCache() {
+    console.log("Clearing Service Worker DOM Cache ...");
+
+    navigator.serviceWorker.controller.postMessage({
+      type: 'Clear',
+    });
+  }
+</script>
+
+Service Worker Status: <a id="sw_status"></a><br>
+Service Worker DOM Cache: <a id="cache_status"></a><br>
+
+<input type="button" id="set_btn" value="Set DOM Cache">
+<input type="button" id="check_btn" value="Check DOM Cache">
+<input type="button" id="clear_btn" value="Clear DOM Cache">
+
+</body>
+</html>
+
