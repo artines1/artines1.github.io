@@ -26,10 +26,12 @@
     let setBtn = document.getElementById("set_btn");
     let checkBtn = document.getElementById("check_btn");
     let clearBtn = document.getElementById("clear_btn");
+    let showUUID_btn = document.getElementById("showUUID_btn");
 
     setBtn.addEventListener('click', setSWDOMCache);
     checkBtn.addEventListener('click', checkSWDOMCache);
     clearBtn.addEventListener('click', clearSWDOMCache);
+    showUUID_btn.addEventListener('click', showSWUUID);
   }
 
   function handleSWReply(event) {
@@ -63,6 +65,14 @@
       type: 'Clear',
     });
   }
+
+  async function showSWUUID() {
+    console.log("Fetching Service Worker UUID ...");
+
+    navigator.serviceWorker.controller.postMessage({
+      type: 'GetUUID',
+    });
+  }
 </script>
 
 Service Worker Status: <a id="sw_status"></a><br>
@@ -71,6 +81,7 @@ Service Worker DOM Cache: <a id="cache_status"></a><br>
 <input type="button" id="set_btn" value="Set DOM Cache">
 <input type="button" id="check_btn" value="Check DOM Cache">
 <input type="button" id="clear_btn" value="Clear DOM Cache">
+<input type="button" id="showUUID_btn" value="Show SW UUID">
 
 </body>
 </html>
