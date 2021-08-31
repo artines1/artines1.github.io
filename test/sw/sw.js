@@ -31,7 +31,6 @@ function ResponseMsg(msg) {
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'Set') {
-    console.log("Setting Cache in SW ...");
 
     caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll([
@@ -45,7 +44,6 @@ self.addEventListener('message', (event) => {
   }
 
   if (event.data && event.data.type === 'Check') {
-    console.log("Checking Cache in SW ...");
 
     caches.has(CACHE_NAME).then(function(boolean) {
       if (boolean) {
@@ -57,8 +55,6 @@ self.addEventListener('message', (event) => {
   }
 
   if (event.data && event.data.type === 'Clear') {
-    console.log("Clearing Cache in SW ...");
-
     caches.delete(CACHE_NAME).then(function(boolean) {
       if (boolean) {
         ResponseMsg("The cache has been deleted");
@@ -69,8 +65,6 @@ self.addEventListener('message', (event) => {
   }
 
   if (event.data && event.data.type === 'GetUUID') {
-    console.log("Fetching the UUID in SW ...");
-
     ResponseMsg(`SW UUID: ${sw_uuid}`);
   }
 });
