@@ -27,11 +27,13 @@
     let checkBtn = document.getElementById("check_btn");
     let clearBtn = document.getElementById("clear_btn");
     let showUUID_btn = document.getElementById("showUUID_btn");
+    let requestSA_btn = document.getElementById("requestSA");
 
     setBtn.addEventListener('click', setSWDOMCache);
     checkBtn.addEventListener('click', checkSWDOMCache);
     clearBtn.addEventListener('click', clearSWDOMCache);
     showUUID_btn.addEventListener('click', showSWUUID);
+    requestSA_btn.addEventListener('click', requestSA);
   }
 
   function handleSWReply(event) {
@@ -73,6 +75,19 @@
       type: 'GetUUID',
     });
   }
+
+  async function requestSA() {
+    console.log("Request storage access ...");
+
+    try {
+      await document.requestStorageAccess();
+    } catch (e) {
+      console.log("Request storage access failed ...");
+      return;
+    }
+
+    console.log("Request storage access succeeded ...");
+  }
 </script>
 
 Service Worker Status: <a id="sw_status"></a><br>
@@ -82,6 +97,7 @@ Service Worker DOM Cache: <a id="cache_status"></a><br>
 <input type="button" id="check_btn" value="Check DOM Cache">
 <input type="button" id="clear_btn" value="Clear DOM Cache">
 <input type="button" id="showUUID_btn" value="Show SW UUID">
+<input type="button" id="requestSA" value="Request SA">
 
 </body>
 </html>
