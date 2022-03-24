@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Show Referrer</title>
+    <script>
+        window.onload = () => {
+            let element = document.getElementById("referrer");
+            element.textContent = `Referrer: ${document.referrer}`;
+        }
+    </script>
+</head>
+<body>
+    <a id="referrer"></a>
+</body>
+</html>
