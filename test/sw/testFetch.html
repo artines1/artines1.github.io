@@ -6,6 +6,8 @@
     <title>Service Worker Test</title>
 </head>
 <body>
+    <button id="rsaButton">Request Storage Access</button>
+    <div id="rsaResult"></div>
     <button id="fetchButton">Fetch Text File</button>
     <div id="fileContent">File content will appear here...</div>
 
@@ -27,6 +29,17 @@
                     url: 'assert.txt'
                 });
             }
+        });
+
+        document.getElementById('rsaButton').addEventListener('click', function() {
+            document.requestStorageAccess().then(
+                () => {
+                    document.getElementById('rsaResult').textContent = "Access Granted";
+                },
+                () => {
+                    document.getElementById('rsaResult').textContent = "Access denied";
+                },
+            );
         });
 
         navigator.serviceWorker.addEventListener('message', function(event) {
