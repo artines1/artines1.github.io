@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Storage Access</title>
+</head>
+<body>
+<script>
+  window.onload = async _ => {
+    let displayText = document.getElementById("displayText");
+    let resultText = document.getElementById("resultText");
+    let hasSAButton = document.getElementById("hasSAButton");
+    let reqSAButton = document.getElementById("reqSAButton");
+
+    hasSAButton.addEventListener("click", async () => {
+      displayText.textContent = await document.hasStorageAccess();
+    });
+    
+    reqSAButton.addEventListener("click", () => {
+      document.requestStorageAccess().then(
+        () => {
+          resultText.textContent = "access granted"
+        },
+        () => {
+          resultText.textContent = "access denied"
+        },
+      );
+    });
+
+
+    let hasSA = await document.hasStorageAccess();
+    displayText.textContent = hasSA;
+  };
+</script>
+HasStorageAccess: <a id="displayText"></a><br>
+RSA Result: <a id="resultText"></a><br>
+<button id="hasSAButton">HasStorageAccess</button>
+<button id="reqSAButton">RequestStorageAccess</button>
+</body>
+</html>
