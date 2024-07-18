@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie Setter and Display in Third Party</title>
+    <script>
+        // Function to set a cookie
+        function setCookie(name, value, partitioned) {
+            let expires = "";
+            const date = new Date();
+            date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+          
+            let partitionAttr = partitioned ? "; Partitioned; SameSite=None; Secure" : "";
+
+            document.cookie = name + "=" + (value || "") + expires + partitionAttr + "; path=/";
+        }
+
+        // Function to get a cookie by name
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Function to display all cookies
+        function displayCookies() {
+            const cookies = document.cookie.split(';');
+            let cookieList = "<ul>";
+            cookies.forEach(cookie => {
+                cookieList += "<li>" + cookie.trim() + "</li>";
+            });
+            cookieList += "</ul>";
+            document.getElementById('cookieDisplay').innerHTML = cookieList;
+        }
+
+        // Setting some example cookies
+        function setExampleCookies() {
+            setCookie("fooThirdParty", "bar");
+            setCookie("fooThirdParty", "bar", true);
+            setCookie("fooThirdPartyPartitioned", "bar", true);
+          
+        }
+
+        // Initialize example cookies and display them on page load
+        window.onload = function() {
+            setExampleCookies();
+            displayCookies();
+        }
+    </script>
+</head>
+<body>
+    <h1>Cookie Setter and Display</h1>
+    <div id="cookieDisplay">
+        <!-- Cookies will be displayed here -->
+    </div>
+    <h2>First-Party Iframe (ABA context)</h2>
+    <iframe width="80%" height="400px" src="https://testing-partitioned-cookies.glitch.me?noIframe=true"></iframe>
+</body>
+</html>
